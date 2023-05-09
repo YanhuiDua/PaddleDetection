@@ -32,7 +32,9 @@ REPO_ROOT_PATH=$(readlinkf ${BASEDIR}/../)
 FILENAME=$1
  # change gpu to npu in tipc txt configs
  sed -i "s/use_gpu:True/use_npu:True/g" $FILENAME
- sed -i "s/--device:gpu|cpu/--device:npu/g" $FILENAME
+ sed -i "s/--device:gpu|cpu/--device:npu|cpu/g" $FILENAME
+ sed -i "s/--device:gpu/--device:npu/g" $FILENAME
+ sed -i "s/--device:cpu|gpu/--device:cpu|npu/g" $FILENAME
  sed -i "s/trainer:pact_train/trainer:norm_train/g" $FILENAME
  sed -i "s/trainer:fpgm_train/trainer:norm_train/g" $FILENAME
  sed -i "s/--slim_config _template_pact/ /g" $FILENAME
